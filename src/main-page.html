@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blockchain</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="main-style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="col-md-12">
+            <div class="col-md-3 peerA">
+                <h3>Peer A</h3>
+                <form>
+                    <label>Latest:</label>
+                    <input type="text" name="FinalValue1" disabled>
+                </form>
+                <div class="box">
+                    <form>
+                        <label>Previous hash:</label>
+                        <input type="text" name="prevValue1"><br>
+                        <ul style="list-style: none">
+                            <li>
+                                <input type="button" value="Record 1" onclick="show('showRecord11');">
+                                <div id="showRecord11" style="display: none">
+                                    <p>Hey</p>
+                                </div>
+                            </li>
+                            <li>
+                                <input type="button" value="Record 2" onclick="show('showRecord12');">
+                                <div id="showRecord12" style="display: none">
+                                    <p>Hey</p>
+                                </div>
+                            </li>
+                            <li>Record 3</li>
+                        </ul>
+                        <label>Current hash:</label>
+                        <input type="text" name="currValue1">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 peerB">
+
+            <div class="col-md-3">
+                <h3>Peer B</h3>
+                <form>
+                    <label>Latest:</label>
+                    <input type="text" name="FinalValue" disabled>
+                </form>
+                <div class="box">
+                    <form>
+                        <label>Previous hash:</label>
+                        <input type="text" name="prevValue2"><br>
+                        <ul style="list-style: none">
+                            <li>
+                                <input type="button" value="Record 1" onclick="show('showRecord21');">
+                                <div id="showRecord21" style="display: none">
+                                    <p>Hey</p>
+                                </div>
+                            </li>
+                            <li>Record 2</li>
+                            <li>Record 3</li>
+                        </ul>
+                        <label>Current hash:</label>
+                        <input type="text" name="currValue2">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 peerC">
+
+            <div class="col-md-3">
+                <h3>Peer C</h3>
+                <form>
+                    <label>Latest:</label>
+                    <input type="text" name="FinalValue" disabled>
+                </form>
+                <div class="box">
+                    <form>
+                        <label>Previous hash:</label>
+                        <input type="text" name="prevValue3"><br>
+                        <ul style="list-style: none">
+                            <li>
+                                <input type="button" value="Record 1" onclick="show('showRecord31');">
+                                <div id="showRecord31" style="display: none">
+                                    <p>Hey</p>
+                                </div>
+                            </li>
+                            <li>Record 2</li>
+                            <li>Record 3</li>
+                        </ul>
+                        <label>Current hash:</label>
+                        <input type="text" name="currValue3">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    function show(ide){
+        document.getElementById(ide).style.display='block';
+    }
+</script>
+</body>
+</html>
