@@ -46,10 +46,10 @@
     //     newStoreRef.set(s1);
     // }
 
-    function getSomething() {
+    function addBlockNumber() {
         if (time_arr1 === time_arr2) {
             const rootRef = firebase.database().ref('fir');
-            const storesRef = rootRef.child('record-3').update({
+            const storesRef = rootRef.child('record-4').update({
                 'block_numb': '2'
             });
             console.log("BLOCK NUMBER ADDED");
@@ -94,6 +94,6 @@
 
 
 
-getTime(getSomething);
+getTime(addBlockNumber);
 
 
