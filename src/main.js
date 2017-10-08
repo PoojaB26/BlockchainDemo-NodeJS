@@ -1,4 +1,9 @@
 const SHA256 = require("crypto-js/sha256");
+var http = require('http');
+var fs = require('fs');
+
+const PORT=8080;
+
 
 class Block {
     constructor(index, timestamp, data, previousHash = '') {
@@ -28,7 +33,7 @@ class Block {
 class Blockchain{
     constructor() {
         this.chain = [this.createGenesisBlock()];
-        this.difficulty = 5;
+        this.difficulty = 1;
     }
 
     createGenesisBlock() {
@@ -62,10 +67,28 @@ class Blockchain{
         return true;
     }
 }
-
 let savjeeCoin = new Blockchain();
 console.log('Mining block 1...');
 savjeeCoin.addBlock(new Block(1, "20/07/2017", { amount: 4 }));
 
 console.log('Mining block 2...');
 savjeeCoin.addBlock(new Block(2, "20/07/2017", { amount: 8 }));
+
+
+fs.readFile('./main-page.html', function (err, html) {
+
+    if (err) throw err;
+
+    /*http.createServer(function(request, response) {
+     response.writeHeader(200, {"Content-Type": "text/html"});
+     response.write(html);
+     response.end();
+     }).listen(PORT);*/
+
+    http.createServer(function (req, res) {
+        res.write('<html><head></head><body>');
+        res.write('Block 1 ' +  savjeeCoin.chain[1].previousHash);
+        res.end('</body></html>');
+    }).listen(PORT);
+
+});

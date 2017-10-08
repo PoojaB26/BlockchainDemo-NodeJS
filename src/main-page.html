@@ -11,6 +11,12 @@
     <link rel="stylesheet" href="main-style.css">
 
     <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.9-1/sha384.js"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script
+            src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
     <script>
 
 
@@ -26,7 +32,7 @@
             firebase.initializeApp(config);
 
 
-
+/*
         for(var i=1;i<7;i++){
             var ref = firebase.database().ref("fir/record-"+i);
             var key;
@@ -38,10 +44,33 @@
                     data[key].key=key;
                     dataArray.push(data[key]);
                 }
+                window.globe = data;
                 console.log(data.a_name);
 
             });
-        }
+        }*/
+
+
+                var ref = firebase.database().ref("fir/record-"+1);
+                var key;
+                ref.once("value",function (snapshot) {
+                    var data=snapshot.val();
+                    var tr;
+                    var dataArray=[];
+                    for (var key in data){
+                        data[key].key=key;
+                        dataArray.push(data[key]);
+                    }
+                    console.log(data.a_name);
+
+                });
+            var something = {
+
+                back  : "#fff",
+                front : "#888",
+                side  : "#369"
+
+            };
 
     </script>
 </head>
@@ -156,5 +185,6 @@
         document.getElementById(ide).style.display='block';
     }
 </script>
+    <script type="text/javascript" src="app.js"></script>
 </body>
 </html>
