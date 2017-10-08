@@ -32,26 +32,30 @@
             firebase.initializeApp(config);
 
 
-/*
-        for(var i=1;i<7;i++){
-            var ref = firebase.database().ref("fir/record-"+i);
+//        for(var i=1;i<7;i++){
+            var ref = firebase.database().ref("fir/record-1");
             var key;
             ref.once("value",function (snapshot) {
                 var data=snapshot.val();
+                console.log("data"+snapshot.val());
+                console.log("LOGGG " + data.toString());
+                document.getElementById('title').value = "teeessssssst" ;
+                console.log("LOGGG2 " + document.getElementById('title').value());
+
+
                 var tr;
                 var dataArray=[];
                 for (var key in data){
                     data[key].key=key;
                     dataArray.push(data[key]);
                 }
-                window.globe = data;
                 console.log(data.a_name);
 
             });
-        }*/
+        //}
 
 
-                var ref = firebase.database().ref("fir/record-"+1);
+             /*   var ref = firebase.database().ref("fir/record-"+1);
                 var key;
                 ref.once("value",function (snapshot) {
                     var data=snapshot.val();
@@ -63,9 +67,7 @@
                     }
                     console.log(data.a_name);
 
-                });
-            location.href = "http://localhost:10001" + "?number1=" + "hello" + "&number2=" + "dullo";
-
+                });*/
 
     </script>
 </head>
@@ -111,7 +113,8 @@
                             <li>Record 3</li>
                         </ul>
                         <label>Current hash:</label>
-                        <input id="title" type="text" name="currValue1" value="tesssst">
+                        <input id="title" type="text" name="currValue1" >
+
                     </form>
                 </div>
             </div>

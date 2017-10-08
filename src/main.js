@@ -2,18 +2,44 @@ const SHA256 = require("crypto-js/sha256");
 var http = require('http');
 var fs = require('fs');
 var url = require("url");
+var firebase = require('firebase');
 var cheerio = require('cheerio'),
 
-    $ = cheerio.load(fs.readFileSync('main-page.html'));
+    $ = cheerio.load(fs.readFileSync('main_page.html'));
 // $ = cheerio.load('<input id="title" type="text" value="some text">');
 
 var test = $( "#title" ).val();
 console.log(test);
 
+var test2 = function(){
+    return test;
+}
+
+console.log("STUUPID" + test);
+$("idiot").value = test2();
 
 $.html();
 
 const PORT=8080;
+
+var config = {
+    apiKey: "AIzaSyAUVdiBQHOSYDHLl1R7WXJvv-DcMyvygxk",
+    authDomain: "poojab26-firebase.firebaseapp.com",
+    databaseURL: "https://poojab26-firebase.firebaseio.com",
+    projectId: "poojab26-firebase",
+    storageBucket: "poojab26-firebase.appspot.com",
+    messagingSenderId: "164631083677"
+};
+var app = firebase.initializeApp(config);
+
+var flag = 0;
+
+var count = 0;
+var time_arr1, time_arr2, time_arr3;
+var max = count;
+var data;
+var dataArray=[];
+
 
 
 class Block {
@@ -78,17 +104,37 @@ class Blockchain{
         return true;
     }
 }
+
+
+/*
+if(savjeeCoin.chain[1]) {
+    savjeeCoin.addBlock(new Block(1, "20/07/2017", {amount: 4}));
+    console.log('Mining block 1...');
+}
+*/
 let savjeeCoin = new Blockchain();
-console.log('Mining block 1...');
-savjeeCoin.addBlock(new Block(1, "20/07/2017", { amount: 4 }));
 
-console.log('Mining block 2...');
-savjeeCoin.addBlock(new Block(2, "20/07/2017", { amount: 8 }));
+function getEverything(){
+    for(i=0; i<5; i++) {
+        var ref = app.database().ref("fir/record-" + i);
+//var key;
+        ref.on("value", function (snapshot) {
+            data = snapshot.val();
+            for (var key in data) {
+                data[key].key = key;
+                dataArray.push(data[key]);
+            }
+            // JSON.stringify(snapshot.val()
 
-console.log('Mining block 3...');
-savjeeCoin.addBlock(new Block(3, "21/06/2017", { amount:12 }));
+            savjeeCoin.addBlock(new Block(1, "20/07/2017", dataArray));
+            console.log(savjeeCoin.chain[1].data + "    " + savjeeCoin.chain[1].previousHash);
+
+        });
+    }
 
 
+}
+getEverything();
 fs.readFile('./main-page.html', function (err, html) {
 
     if (err) throw err;
@@ -102,7 +148,9 @@ fs.readFile('./main-page.html', function (err, html) {
     http.createServer(function (req, res) {
         res.write('<html><head></head><body>');
         res.write('<div class="peerA" style="border-style: solid;border-color: darkgray;border-width: 2px;margin-bottom: 10px;">');
-        res.write('<h2>Peer A</h2>');
+        res.write('<input type="text" id="idiot">');
+
+      /*  res.write('<h2>Peer A</h2>');
         res.write('<b>Block 1 </b><br> Previous Hash: ' +  savjeeCoin.chain[1].previousHash + '<br> Current hash: ' +savjeeCoin.chain[1].hash);
         res.write('<br>Data:'+savjeeCoin.chain[1].data.amount);
         res.write('<br><br><b>Block 2 </b><br> Previous Hash: ' +  savjeeCoin.chain[2].previousHash + '<br> Current hash: ' +savjeeCoin.chain[2].hash);
@@ -130,7 +178,7 @@ fs.readFile('./main-page.html', function (err, html) {
         res.write('<br>Data:'+savjeeCoin.chain[2].data.amount);
         res.write('<br><br><b>Block 3 </b><br> Previous Hash: ' +  savjeeCoin.chain[3].previousHash + '<br> Current hash: ' +savjeeCoin.chain[3].hash);
         res.write('<br>Data:'+savjeeCoin.chain[3].data.amount);
-        res.write('</div>');
+        res.write('</div>');*/
 
         res.end('</body></html>');
     }).listen(PORT);

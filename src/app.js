@@ -13,6 +13,26 @@ var flag = 0;
 var count = 0;
 var time_arr1, time_arr2, time_arr3;
 var max = count;
+var dataArray=[];
+
+var ref = firebase.database().ref("fir/record-"+1);
+//var key;
+ref.on("value",function (snapshot) {
+    var data=snapshot.val();
+
+    for (var key in data){
+        data[key].key=key;
+        dataArray.push(data[key]);
+    }
+    // JSON.stringify(snapshot.val()
+document.getElementById('title').value=data.a_name;
+    console.log(snapshot.val());
+
+
+});
+
+
+
 //}
 // while (s1!==null&&s2!==null&&s3!==null) {
 /* if (time_arr1 === time_arr2) {
@@ -60,6 +80,7 @@ function addParent() {
     console.log("BLOCK NUMBER outside");
 
 }
+/*
 
 function getTime(callback){
 
@@ -67,11 +88,12 @@ function getTime(callback){
     for(var i=1;i<8;i++){
         var ref = firebase.database().ref("fir/record-"+i);
         var ref1 = firebase.database().ref("fir/record-"+(i-1));
-        ref1.once("value", function(snapshot) {
+        ref1.on("value", function(snapshot) {
             var data=snapshot.val();
             var time = data.report_timestamp;
             console.log("PREV " + time);
         });
+
 
 
         //var key;
@@ -97,4 +119,4 @@ function getTime(callback){
 
 
 
-getTime(addBlockNumber);
+getTime(addBlockNumber);*/
