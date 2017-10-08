@@ -1,12 +1,3 @@
-
-
-
-    /*
-     function get_snap() {
-
-     }*/
-
-
     var config = {
         apiKey: "AIzaSyAUVdiBQHOSYDHLl1R7WXJvv-DcMyvygxk",
         authDomain: "poojab26-firebase.firebaseapp.com",
@@ -22,7 +13,6 @@
     var count = 0;
     var time_arr1, time_arr2, time_arr3;
     var max = count;
-
     //}
    // while (s1!==null&&s2!==null&&s3!==null) {
        /* if (time_arr1 === time_arr2) {
@@ -59,15 +49,55 @@
 
     }
 
+    function addParent() {
+        if (time_arr1 === time_arr2) {
+            const rootRef = firebase.database().ref('fir');
+            const storesRef = rootRef.child('record-4').update({
+                'block_numb': '2'
+            });
+            console.log("BLOCK NUMBER ADDED");
+
+        }
+        console.log("BLOCK NUMBER outside");
+
+    }
+
     function getTime(callback){
+
         var s1,s2,s3;
-        var another1 = firebase.database().ref("fir/record-1");
+       /* var another1 = firebase.database().ref("fir/record-1");
 
         var another = firebase.database().ref("fir/record-4");
 
         var another2 = firebase.database().ref("fir/record-3");
+*/
+        for(var i=1;i<8;i++){
+            var ref = firebase.database().ref("fir/record-"+i);
+            var ref1 = firebase.database().ref("fir/record-"+(i-1));
+            ref1.once("value", function(snapshot) {
+                var data=snapshot.val();
+                   var time = data.report_timestamp;
+                    console.log("PREV " + time);
+                });
 
-        // do {
+
+            //var key;
+            ref.on("value",function (snapshot) {
+                var data=snapshot.val();
+                var dataArray=[];
+                for (var key in data){
+                    data[key].key=key;
+                    dataArray.push(data[key]);
+                }
+
+                console.log("NEW " + data.report_timestamp);
+
+            });
+
+
+        }
+
+     /*   // do {
         another1.on("value", function (snapshot) {
             time_arr1 = snapshot.child("report_timestamp").val();
             s1 = snapshot.val();
@@ -87,7 +117,7 @@
             console.log("time3" + time_arr3);
             callback();
 
-        });
+        });*/
 
         console.log("snapshot");
     }
