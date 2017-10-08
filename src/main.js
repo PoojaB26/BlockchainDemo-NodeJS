@@ -179,7 +179,33 @@ fs.readFile('./main-page.html', function (err, html) {
         res.write('<br><br><b>Block 3 </b><br> Previous Hash: ' +  savjeeCoin.chain[3].previousHash + '<br> Current hash: ' +savjeeCoin.chain[3].hash);
         res.write('<br>Data:'+savjeeCoin.chain[3].data.amount);
         res.write('</div>');*/
+        res.write('<html><head></head><body>');
+        res.write('<div class="peerA" style="border-style: solid;border-color: darkgray;border-width: 2px;margin-bottom: 10px;">');
+        res.write('<h2>Peer A</h2>');
+        for(var i=1;i<4;i++){
+            res.write('<br><b>Block</b>'+i+'<br> Previous Hash: ' +  savjeeCoin.chain[i].previousHash + '<br> Current hash: ' +savjeeCoin.chain[i].hash);
+            res.write('<br>Data:'+dataArray);
+        }
+        res.write('</div>');
 
+
+        res.write('<div class="peerB" style="border-style: solid;border-color: darkgray;border-width: 2px;margin-bottom: 10px;">');
+        res.write('<h2>Peer B</h2>');
+        for(var i=1;i<4;i++){
+            res.write('<br><b>Block</b>'+i+'<br> Previous Hash: ' +  savjeeCoin.chain[i].previousHash + '<br> Current hash: ' +savjeeCoin.chain[i].hash);
+            res.write('<br>Data:'+dataArray);
+        }
+        res.write('</div>');
+
+        res.write('<div class="peerC" style="border-style: solid;border-color: darkgray;border-width: 2px;">');
+        res.write('<h2>Peer C</h2>');
+        for(var i=1;i<4;i++){
+            res.write('<br><b>Block</b>'+i+'<br> Previous Hash: ' +  savjeeCoin.chain[i].previousHash + '<br> Current hash: ' +savjeeCoin.chain[i].hash);
+            res.write('<br>Data:'+dataArray);
+        }
+        res.write('</div>');
+
+        res.end('</body></html>');
         res.end('</body></html>');
     }).listen(PORT);
 
