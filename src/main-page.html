@@ -18,173 +18,161 @@
             src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
     <script>
-
-
-
-            var config = {
-                apiKey: "AIzaSyAUVdiBQHOSYDHLl1R7WXJvv-DcMyvygxk",
-                authDomain: "poojab26-firebase.firebaseapp.com",
-                databaseURL: "https://poojab26-firebase.firebaseio.com",
-                projectId: "poojab26-firebase",
-                storageBucket: "poojab26-firebase.appspot.com",
-                messagingSenderId: "164631083677"
-            };
-            firebase.initializeApp(config);
-
-
-/*
-        for(var i=1;i<7;i++){
-            var ref = firebase.database().ref("fir/record-"+i);
-            var key;
-            ref.once("value",function (snapshot) {
-                var data=snapshot.val();
-                var tr;
-                var dataArray=[];
-                for (var key in data){
-                    data[key].key=key;
-                    dataArray.push(data[key]);
-                }
-                window.globe = data;
-                console.log(data.a_name);
-
-            });
-        }*/
-
-
-                var ref = firebase.database().ref("fir/record-"+1);
-                var key;
-                ref.once("value",function (snapshot) {
-                    var data=snapshot.val();
-                    var tr;
-                    var dataArray=[];
-                    for (var key in data){
-                        data[key].key=key;
-                        dataArray.push(data[key]);
-                    }
-                    console.log(data.a_name);
-
-                });
-            var something = {
-
-                back  : "#fff",
-                front : "#888",
-                side  : "#369"
-
-            };
-
+        var config = {
+            apiKey: "AIzaSyAUVdiBQHOSYDHLl1R7WXJvv-DcMyvygxk",
+            authDomain: "poojab26-firebase.firebaseapp.com",
+            databaseURL: "https://poojab26-firebase.firebaseio.com",
+            projectId: "poojab26-firebase",
+            storageBucket: "poojab26-firebase.appspot.com",
+            messagingSenderId: "164631083677"
+        };
+        firebase.initializeApp(config);
+        /*
+                for(var i=1;i<7;i++){
+                    var ref = firebase.database().ref("fir/record-"+i);
+                    var key;
+                    ref.once("value",function (snapshot) {
+                        var data=snapshot.val();
+                        var tr;
+                        var dataArray=[];
+                        for (var key in data){
+                            data[key].key=key;
+                            dataArray.push(data[key]);
+                        }
+                        window.globe = data;
+                        console.log(data.a_name);
+                    });
+                }*/
+        var ref = firebase.database().ref("fir/record-"+1);
+        var key;
+        ref.once("value",function (snapshot) {
+            var data=snapshot.val();
+            var tr;
+            var dataArray=[];
+            for (var key in data){
+                data[key].key=key;
+                dataArray.push(data[key]);
+            }
+            console.log(data.a_name);
+        });
+        var something = {
+            back  : "#fff",
+            front : "#888",
+            side  : "#369"
+        };
     </script>
 </head>
 <body>
-    <div class="container">
-        <div class="col-md-12">
+<div class="container">
+    <div class="col-md-12">
 
-            <table class="table table-bordered col-md-4" id="append">
-                <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Age</th>
-                </tr>
-                </thead>
+        <table class="table table-bordered col-md-4" id="append">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+            </tr>
+            </thead>
 
-            </table>
+        </table>
 
 
 
-            <div class="col-md-3 peerA">
-                <h3>Peer A</h3>
+        <div class="col-md-3 peerA">
+            <h3>Peer A</h3>
+            <form>
+                <label>Latest:</label>
+                <input type="text" name="FinalValue1" id="FinalValue1" disabled>
+            </form>
+            <div class="box">
                 <form>
-                    <label>Latest:</label>
-                    <input type="text" name="FinalValue1" id="FinalValue1" disabled>
+                    <label>Previous hash:</label>
+                    <input type="text" name="prevValue1"><br>
+                    <ul style="list-style: none">
+                        <li>
+                            <input type="button" value="Record 1" onclick="show('showRecord11');">
+                            <div id="showRecord11" style="display: none">
+                                <p>Hey</p>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="button" value="Record 2" onclick="show('showRecord12');">
+                            <div id="showRecord12" style="display: none">
+                                <p>Hey</p>
+                            </div>
+                        </li>
+                        <li>Record 3</li>
+                    </ul>
+                    <label>Current hash:</label>
+                    <input type="text" name="currValue1">
                 </form>
-                <div class="box">
-                    <form>
-                        <label>Previous hash:</label>
-                        <input type="text" name="prevValue1"><br>
-                        <ul style="list-style: none">
-                            <li>
-                                <input type="button" value="Record 1" onclick="show('showRecord11');">
-                                <div id="showRecord11" style="display: none">
-                                    <p>Hey</p>
-                                </div>
-                            </li>
-                            <li>
-                                <input type="button" value="Record 2" onclick="show('showRecord12');">
-                                <div id="showRecord12" style="display: none">
-                                    <p>Hey</p>
-                                </div>
-                            </li>
-                            <li>Record 3</li>
-                        </ul>
-                        <label>Current hash:</label>
-                        <input type="text" name="currValue1">
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-12 peerB">
-
-            <div class="col-md-3">
-                <h3>Peer B</h3>
-                <form>
-                    <label>Latest:</label>
-                    <input type="text" name="FinalValue" disabled>
-                </form>
-                <div class="box">
-                    <form>
-                        <label>Previous hash:</label>
-                        <input type="text" name="prevValue2"><br>
-                        <ul style="list-style: none">
-                            <li>
-                                <input type="button" value="Record 1" onclick="show('showRecord21');">
-                                <div id="showRecord21" style="display: none">
-                                    <p>Hey</p>
-                                </div>
-                            </li>
-                            <li>Record 2</li>
-                            <li>Record 3</li>
-                        </ul>
-                        <label>Current hash:</label>
-                        <input type="text" name="currValue2">
-                    </form>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-12 peerC">
-
-            <div class="col-md-3">
-                <h3>Peer C</h3>
-                <form>
-                    <label>Latest:</label>
-                    <input type="text" name="FinalValue" disabled>
-                </form>
-                <div class="box">
-                    <form>
-                        <label>Previous hash:</label>
-                        <input type="text" name="prevValue3"><br>
-                        <ul style="list-style: none">
-                            <li>
-                                <input type="button" value="Record 1" onclick="show('showRecord31');">
-                                <div id="showRecord31" style="display: none">
-                                    <p>Hey</p>
-                                </div>
-                            </li>
-                            <li>Record 2</li>
-                            <li>Record 3</li>
-                        </ul>
-                        <label>Current hash:</label>
-                        <input type="text" name="currValue3">
-                    </form>
-                </div>
             </div>
         </div>
     </div>
+
+    <div class="col-md-12 peerB">
+
+        <div class="col-md-3">
+            <h3>Peer B</h3>
+            <form>
+                <label>Latest:</label>
+                <input type="text" name="FinalValue" disabled>
+            </form>
+            <div class="box">
+                <form>
+                    <label>Previous hash:</label>
+                    <input type="text" name="prevValue2"><br>
+                    <ul style="list-style: none">
+                        <li>
+                            <input type="button" value="Record 1" onclick="show('showRecord21');">
+                            <div id="showRecord21" style="display: none">
+                                <p>Hey</p>
+                            </div>
+                        </li>
+                        <li>Record 2</li>
+                        <li>Record 3</li>
+                    </ul>
+                    <label>Current hash:</label>
+                    <input type="text" name="currValue2">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 peerC">
+
+        <div class="col-md-3">
+            <h3>Peer C</h3>
+            <form>
+                <label>Latest:</label>
+                <input type="text" name="FinalValue" disabled>
+            </form>
+            <div class="box">
+                <form>
+                    <label>Previous hash:</label>
+                    <input type="text" name="prevValue3"><br>
+                    <ul style="list-style: none">
+                        <li>
+                            <input type="button" value="Record 1" onclick="show('showRecord31');">
+                            <div id="showRecord31" style="display: none">
+                                <p>Hey</p>
+                            </div>
+                        </li>
+                        <li>Record 2</li>
+                        <li>Record 3</li>
+                    </ul>
+                    <label>Current hash:</label>
+                    <input type="text" name="currValue3">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     function show(ide){
         document.getElementById(ide).style.display='block';
     }
 </script>
-    <script type="text/javascript" src="app.js"></script>
+<script type="text/javascript" src="app.js"></script>
 </body>
 </html>
