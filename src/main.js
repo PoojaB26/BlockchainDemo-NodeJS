@@ -1,6 +1,17 @@
 const SHA256 = require("crypto-js/sha256");
 var http = require('http');
 var fs = require('fs');
+var url = require("url");
+var cheerio = require('cheerio'),
+
+    $ = cheerio.load(fs.readFileSync('main-page.html'));
+   // $ = cheerio.load('<input id="title" type="text" value="some text">');
+
+var test = $( "#title" ).val();
+console.log(test);
+
+
+$.html();
 
 const PORT=8080;
 
@@ -87,7 +98,12 @@ fs.readFile('./main-page.html', function (err, html) {
 
     http.createServer(function (req, res) {
         res.write('<html><head></head><body>');
-        res.write('Block 1 ' +  savjeeCoin.chain[1].previousHash);
+        var params = url.parse(req.url,true).query;
+
+       // console.log(params);
+        res.write('Block 1 ' +  savjeeCoin.chain[1].previousHash + params.number1);
+
+
         res.end('</body></html>');
     }).listen(PORT);
 
