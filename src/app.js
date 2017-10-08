@@ -31,7 +31,7 @@
 
     var another2 = firebase.database().ref("fir/record-3");
 
-    do {
+   // do {
         another1.on("value", function (snapshot) {
             time_arr1 = snapshot.child("report_timestamp").val();
             s1 = snapshot.val();
@@ -50,19 +50,21 @@
             s3 = snapshot.val();
             console.log(time_arr3);
         });
-    }
-    while (s1!==null&&s2!==null&&s3!==null) {
+    //}
+   // while (s1!==null&&s2!==null&&s3!==null) {
         if (time_arr1 === time_arr2) {
             const rootRef = firebase.database().ref('fir');
-            const storesRef = rootRef.child('record-2');
-            const newStoreRef = storesRef.push();
+            const storesRef = rootRef.child('record-3').update({
+                'block_numb': '2'
+            });
+         /*   var newStoreRef = storesRef.ref();
 
             newStoreRef.set({
                 'block_numb': '2'
             });
+*/
 
-
-        }
+     //   }
     }
     // if(time_arr2==time_arr3){
     //     var rootRef = firebase.database().ref();
